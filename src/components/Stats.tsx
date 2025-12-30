@@ -22,14 +22,14 @@ export function Stats() {
 
   return (
     <motion.div
-      className="stats-panel flex items-center justify-center gap-6 px-6 py-3"
+      className="stats-panel flex items-center justify-center gap-5 px-8 py-4"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.4 }}
     >
       {/* Sessions */}
       <div className="flex items-center gap-2">
-        <Target size={20} style={{ color: 'rgba(232, 212, 168, 0.7)' }} />
+        <Target size={18} style={{ color: '#c9b896' }} />
         <motion.span
           key={sessionsToday}
           initial={{ scale: 1.1 }}
@@ -38,15 +38,15 @@ export function Stats() {
         >
           {sessionsToday}
         </motion.span>
-        <span className="text-sm" style={{ color: 'rgba(232, 212, 168, 0.7)' }}>sessions</span>
+        <span className="text-sm" style={{ color: '#c9b896' }}>sessions</span>
       </div>
 
       {/* Separator */}
-      <div className="w-px h-6" style={{ background: 'rgba(232, 212, 168, 0.3)' }} />
+      <div className="w-px h-5" style={{ background: '#a89070' }} />
 
       {/* Temps de travail */}
       <div className="flex items-center gap-2">
-        <Clock size={20} style={{ color: 'rgba(232, 212, 168, 0.7)' }} />
+        <Clock size={18} style={{ color: '#c9b896' }} />
         <motion.span
           key={totalWorkTimeToday}
           initial={{ scale: 1.1 }}
@@ -55,21 +55,21 @@ export function Stats() {
         >
           {formatTime(totalWorkTimeToday)}
         </motion.span>
-        <span className="text-sm" style={{ color: 'rgba(232, 212, 168, 0.7)' }}>travail</span>
+        <span className="text-sm" style={{ color: '#c9b896' }}>travail</span>
       </div>
 
       {/* Separator */}
-      <div className="w-px h-6" style={{ background: 'rgba(232, 212, 168, 0.3)' }} />
+      <div className="w-px h-5" style={{ background: '#a89070' }} />
 
       {/* Reset button */}
       <button
         type="button"
         onClick={resetStats}
-        className="hover:text-cream-light transition-colors p-1.5 rounded-lg"
-        style={{ color: 'rgba(232, 212, 168, 0.5)' }}
+        className="hover:text-cream-light transition-colors p-1"
+        style={{ color: '#a89070' }}
         title="Réinitialiser les stats"
       >
-        <RotateCcw size={18} />
+        <RotateCcw size={16} />
       </button>
     </motion.div>
   );
