@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+/* Thème Pomodoro Hiiiddy - Style Forêt/Bambou */
+:root {
+  /* Couleurs principales */
+  --forest-dark: #1a3a1a;
+  --forest-medium: #2d5a27;
+  --forest-light: #4a7c45;
+  --bamboo-dark: #654321;
+  --bamboo-medium: #8b6914;
+  --bamboo-light: #a67c00;
+  --wood-dark: #5d4037;
+  --wood-medium: #795548;
+  --wood-light: #a1887f;
+  --cream: #f5e6c8;
+  --cream-light: #faf3e3;
+  --cream-dark: #e8d4a8;
+
+  /* États */
+  --work-color: #e57373;
+  --break-color: #81c784;
+  --long-break-color: #64b5f6;
+
+  /* Ombres */
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --shadow-strong: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  /* Background */
+  --background: var(--forest-dark);
+  --foreground: var(--cream);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-forest-dark: var(--forest-dark);
+  --color-forest-medium: var(--forest-medium);
+  --color-forest-light: var(--forest-light);
+  --color-bamboo-dark: var(--bamboo-dark);
+  --color-bamboo-medium: var(--bamboo-medium);
+  --color-bamboo-light: var(--bamboo-light);
+  --color-wood-dark: var(--wood-dark);
+  --color-wood-medium: var(--wood-medium);
+  --color-wood-light: var(--wood-light);
+  --color-cream: var(--cream);
+  --color-cream-light: var(--cream-light);
+  --color-cream-dark: var(--cream-dark);
+  --color-work: var(--work-color);
+  --color-break: var(--break-color);
+  --color-long-break: var(--long-break-color);
+  --font-display: "Fredoka", sans-serif;
+}
+
+body {
+  background: linear-gradient(180deg, var(--forest-dark) 0%, var(--forest-medium) 50%, var(--forest-light) 100%);
+  color: var(--foreground);
+  font-family: "Fredoka", sans-serif;
+  min-height: 100vh;
+}
+
+/* Style pour le cadre bambou */
+.bamboo-frame {
+  position: relative;
+  background: linear-gradient(135deg, var(--cream-light) 0%, var(--cream) 50%, var(--cream-dark) 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: var(--shadow-strong);
+}
+
+.bamboo-frame::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  background:
+    linear-gradient(90deg, var(--bamboo-medium) 0%, var(--bamboo-light) 20%, var(--bamboo-medium) 40%, var(--bamboo-light) 60%, var(--bamboo-medium) 80%, var(--bamboo-light) 100%);
+  border-radius: 28px;
+  z-index: -1;
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2),
+    var(--shadow-soft);
+}
+
+/* Noeuds de bambou aux coins */
+.bamboo-frame::after {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border-radius: 28px;
+  z-index: -1;
+  background-image:
+    radial-gradient(circle at 0% 0%, var(--bamboo-dark) 8px, transparent 8px),
+    radial-gradient(circle at 100% 0%, var(--bamboo-dark) 8px, transparent 8px),
+    radial-gradient(circle at 0% 100%, var(--bamboo-dark) 8px, transparent 8px),
+    radial-gradient(circle at 100% 100%, var(--bamboo-dark) 8px, transparent 8px);
+}
+
+/* Bouton style bois */
+.wood-button {
+  background: linear-gradient(180deg, var(--wood-light) 0%, var(--wood-medium) 50%, var(--wood-dark) 100%);
+  color: var(--cream-light);
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.wood-button:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 12px rgba(0, 0, 0, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.wood-button:active {
+  transform: translateY(1px);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 1px 2px rgba(0, 0, 0, 0.2),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.1);
+}
+
+.wood-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Texte style gravé sur bois */
+.wood-text {
+  color: var(--bamboo-dark);
+  text-shadow:
+    1px 1px 0 var(--cream-light),
+    -1px -1px 0 var(--bamboo-medium);
+}
+
+/* Animation de feuilles flottantes */
+@keyframes leaf-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+}
+
+.leaf-animate {
+  animation: leaf-float 3s ease-in-out infinite;
+}
+
+/* Timer display */
+.timer-display {
+  font-size: 5rem;
+  font-weight: 600;
+  color: var(--bamboo-dark);
+  text-shadow:
+    2px 2px 0 var(--cream-light),
+    4px 4px 8px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.05em;
+}
+
+/* État du timer */
+.timer-work {
+  color: var(--work-color);
+}
+
+.timer-break {
+  color: var(--break-color);
+}
+
+.timer-long-break {
+  color: var(--long-break-color);
+}
+
+/* Stats panel */
+.stats-panel {
+  background: linear-gradient(180deg, var(--wood-medium) 0%, var(--wood-dark) 100%);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  color: var(--cream-light);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Overlay mode - fond transparent */
+.overlay-mode {
+  background: transparent !important;
+}
+
+.overlay-mode body {
+  background: transparent !important;
+}
