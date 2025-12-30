@@ -7,7 +7,7 @@ import { BookOpen, Clock, Coffee, Plus, Minus, RotateCcw } from 'lucide-react';
 export function Stats() {
   const sessionsToday = useTimerStore((state) => state.stats.sessionsToday);
   const totalWorkTimeToday = useTimerStore((state) => state.stats.totalWorkTimeToday);
-  const coffeeCount = useTimerStore((state) => state.stats.coffeeCount);
+  const coffeeCount = useTimerStore((state) => state.stats.coffeeCount || 0);
   const resetStats = useTimerStore((state) => state.resetStats);
   const incrementCoffee = useTimerStore((state) => state.incrementCoffee);
   const decrementCoffee = useTimerStore((state) => state.decrementCoffee);

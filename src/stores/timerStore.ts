@@ -238,7 +238,7 @@ export const useTimerStore = create<TimerState>()(
         set({
           stats: {
             ...state.stats,
-            coffeeCount: state.stats.coffeeCount + 1,
+            coffeeCount: (state.stats.coffeeCount || 0) + 1,
           },
         });
       },
@@ -248,7 +248,7 @@ export const useTimerStore = create<TimerState>()(
         set({
           stats: {
             ...state.stats,
-            coffeeCount: Math.max(0, state.stats.coffeeCount - 1),
+            coffeeCount: Math.max(0, (state.stats.coffeeCount || 0) - 1),
           },
         });
       },
