@@ -41,11 +41,17 @@ export function ObjectiveDisplay() {
       className="w-full max-w-lg mx-auto mb-6"
     >
       {/* Affichage principal style stream */}
-      <div className="bg-gradient-to-r from-bamboo-dark/90 to-bamboo-medium/90 rounded-2xl p-4 shadow-lg border-2 border-bamboo-light/30">
+      <div
+        className="rounded-2xl p-4 shadow-lg border-2"
+        style={{
+          background: 'linear-gradient(to right, rgba(101, 67, 33, 0.9), rgba(139, 105, 20, 0.9))',
+          borderColor: 'rgba(166, 124, 0, 0.3)'
+        }}
+      >
 
         {/* Titre objectif */}
         <div className="flex items-center justify-between mb-3">
-          <span className="text-cream-dark/80 text-sm font-medium">Objectif du stream</span>
+          <span className="text-sm font-medium" style={{ color: 'rgba(232, 212, 168, 0.8)' }}>Objectif du stream</span>
           <div className="flex gap-2">
             <button
               type="button"
@@ -53,7 +59,8 @@ export function ObjectiveDisplay() {
                 setInputValue(objective.targetHours.toString());
                 setIsEditing(true);
               }}
-              className="text-cream-dark/60 hover:text-cream-light transition-colors p-1"
+              className="hover:text-cream-light transition-colors p-1"
+              style={{ color: 'rgba(232, 212, 168, 0.6)' }}
               title="Modifier l'objectif"
             >
               <Pencil size={16} />
@@ -61,7 +68,8 @@ export function ObjectiveDisplay() {
             <button
               type="button"
               onClick={resetObjective}
-              className="text-cream-dark/60 hover:text-cream-light transition-colors p-1"
+              className="hover:text-cream-light transition-colors p-1"
+              style={{ color: 'rgba(232, 212, 168, 0.6)' }}
               title="Réinitialiser (objectif + stats)"
             >
               <RotateCcw size={16} />
@@ -78,7 +86,8 @@ export function ObjectiveDisplay() {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
-                className="w-20 text-center text-3xl font-bold bg-cream/20 rounded-lg px-2 py-1 text-cream-light outline-none focus:ring-2 focus:ring-bamboo-light"
+                className="w-20 text-center text-3xl font-bold rounded-lg px-2 py-1 text-cream-light outline-none focus:ring-2 focus:ring-bamboo-light"
+                style={{ background: 'rgba(245, 230, 200, 0.2)' }}
                 min="0.5"
                 max="24"
                 step="0.5"
@@ -100,16 +109,20 @@ export function ObjectiveDisplay() {
               className="text-4xl font-bold text-cream-light tracking-wide"
             >
               <span className="text-5xl">{formatHours(hoursWorked)}</span>
-              <span className="text-cream-dark/80 mx-2">/</span>
+              <span className="mx-2" style={{ color: 'rgba(232, 212, 168, 0.8)' }}>/</span>
               <span>{objective.targetHours}h</span>
             </motion.div>
           )}
         </div>
 
         {/* Barre de progression */}
-        <div className="relative h-4 bg-cream-dark/30 rounded-full overflow-hidden">
+        <div
+          className="relative h-4 rounded-full overflow-hidden"
+          style={{ background: 'rgba(232, 212, 168, 0.3)' }}
+        >
           <motion.div
-            className="absolute inset-y-0 left-0 bg-gradient-to-r from-forest-medium to-forest-light rounded-full"
+            className="absolute inset-y-0 left-0 rounded-full"
+            style={{ background: 'linear-gradient(to right, #2d5a27, #4a7c45)' }}
             initial={{ width: 0 }}
             animate={{ width: `${progressPercent}%` }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
@@ -119,15 +132,18 @@ export function ObjectiveDisplay() {
             {Array.from({ length: objective.targetHours - 1 }).map((_, i) => (
               <div
                 key={i}
-                className="h-full border-r border-cream-dark/20"
-                style={{ width: `${100 / objective.targetHours}%` }}
+                className="h-full"
+                style={{
+                  width: `${100 / objective.targetHours}%`,
+                  borderRight: '1px solid rgba(232, 212, 168, 0.2)'
+                }}
               />
             ))}
           </div>
         </div>
 
         {/* Pourcentage */}
-        <div className="text-center mt-2 text-cream-dark/70 text-sm">
+        <div className="text-center mt-2 text-sm" style={{ color: 'rgba(232, 212, 168, 0.7)' }}>
           {progressPercent.toFixed(0)}% complété
         </div>
       </div>
