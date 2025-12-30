@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useTimerStore } from '@/stores/timerStore';
-import { Target, Clock, RotateCcw } from 'lucide-react';
+import { BookOpen, Clock, RotateCcw } from 'lucide-react';
 
 export function Stats() {
   const sessionsToday = useTimerStore((state) => state.stats.sessionsToday);
@@ -29,7 +29,7 @@ export function Stats() {
     >
       {/* Sessions */}
       <div className="flex items-center gap-2">
-        <Target size={18} style={{ color: '#c9b896' }} />
+        <BookOpen size={18} style={{ color: '#c9b896' }} />
         <motion.span
           key={sessionsToday}
           initial={{ scale: 1.1 }}
