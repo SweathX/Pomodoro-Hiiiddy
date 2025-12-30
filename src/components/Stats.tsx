@@ -5,12 +5,14 @@ import { useTimerStore } from '@/stores/timerStore';
 import { BookOpen, Clock, Coffee, Plus, Minus, RotateCcw } from 'lucide-react';
 
 export function Stats() {
-  const sessionsToday = useTimerStore((state) => state.stats.sessionsToday);
   const totalWorkTimeToday = useTimerStore((state) => state.stats.totalWorkTimeToday);
   const coffeeCount = useTimerStore((state) => state.stats.coffeeCount || 0);
   const resetStats = useTimerStore((state) => state.resetStats);
   const incrementCoffee = useTimerStore((state) => state.incrementCoffee);
   const decrementCoffee = useTimerStore((state) => state.decrementCoffee);
+
+  // Sessions calculées : 1 session = 25 min de travail
+  const sessionsToday = Math.floor(totalWorkTimeToday / (25 * 60));
 
   const formatTime = (seconds: number) => {
     const hours = Math.floor(seconds / 3600);
