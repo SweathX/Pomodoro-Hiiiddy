@@ -46,9 +46,9 @@ interface TimerState {
 }
 
 const DEFAULT_CONFIG: TimerConfig = {
-  workDuration: 5, // TEST: 5 secondes
-  breakDuration: 3, // TEST: 3 secondes
-  longBreakDuration: 5, // TEST: 5 secondes
+  workDuration: 25 * 60,
+  breakDuration: 5 * 60,
+  longBreakDuration: 15 * 60,
   sessionsBeforeLongBreak: 4,
 };
 
