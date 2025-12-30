@@ -2,12 +2,15 @@
 
 import { motion } from 'framer-motion';
 import { useTimerStore } from '@/stores/timerStore';
-import { BookOpen, Clock, RotateCcw } from 'lucide-react';
+import { BookOpen, Clock, Coffee, Plus, Minus, RotateCcw } from 'lucide-react';
 
 export function Stats() {
   const sessionsToday = useTimerStore((state) => state.stats.sessionsToday);
   const totalWorkTimeToday = useTimerStore((state) => state.stats.totalWorkTimeToday);
+  const coffeeCount = useTimerStore((state) => state.stats.coffeeCount);
   const resetStats = useTimerStore((state) => state.resetStats);
+  const incrementCoffee = useTimerStore((state) => state.incrementCoffee);
+  const decrementCoffee = useTimerStore((state) => state.decrementCoffee);
 
   const formatTime = (seconds: number) => {
     const hours = Math.floor(seconds / 3600);
@@ -56,6 +59,38 @@ export function Stats() {
           {formatTime(totalWorkTimeToday)}
         </motion.span>
         <span className="text-sm" style={{ color: '#c9b896' }}>travail</span>
+      </div>
+
+      {/* Separator */}
+      <div className="w-px h-5" style={{ background: '#a89070' }} />
+
+      {/* Coffee counter */}
+      <div className="flex items-center gap-1">
+        <button
+          type="button"
+          onClick={decrementCoffee}
+          className="hover:text-cream-light transition-colors p-0.5 rounded"
+          style={{ color: '#a89070' }}
+        >
+          <Minus size={14} />
+        </button>
+        <Coffee size={18} style={{ color: '#c9b896' }} />
+        <motion.span
+          key={coffeeCount}
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          className="text-xl font-semibold text-cream-light min-w-[20px] text-center"
+        >
+          {coffeeCount}
+        </motion.span>
+        <button
+          type="button"
+          onClick={incrementCoffee}
+          className="hover:text-cream-light transition-colors p-0.5 rounded"
+          style={{ color: '#a89070' }}
+        >
+          <Plus size={14} />
+        </button>
       </div>
 
       {/* Separator */}

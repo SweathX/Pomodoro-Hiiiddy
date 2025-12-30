@@ -14,6 +14,7 @@ interface TimerConfig {
 interface Stats {
   sessionsToday: number;
   totalWorkTimeToday: number;
+  coffeeCount: number;
   lastResetDate: string;
 }
 
@@ -40,6 +41,8 @@ interface TimerState {
   setMode: (mode: TimerMode) => void;
   updateConfig: (config: Partial<TimerConfig>) => void;
   resetStats: () => void;
+  incrementCoffee: () => void;
+  decrementCoffee: () => void;
   setObjective: (hours: number) => void;
   toggleObjective: () => void;
   resetObjective: () => void;
@@ -60,6 +63,7 @@ const checkAndResetDailyStats = (stats: Stats): Stats => {
     return {
       sessionsToday: 0,
       totalWorkTimeToday: 0,
+      coffeeCount: 0,
       lastResetDate: today,
     };
   }
@@ -77,6 +81,7 @@ export const useTimerStore = create<TimerState>()(
       stats: {
         sessionsToday: 0,
         totalWorkTimeToday: 0,
+        coffeeCount: 0,
         lastResetDate: getToday(),
       },
       objective: {
@@ -222,7 +227,28 @@ export const useTimerStore = create<TimerState>()(
           stats: {
             sessionsToday: 0,
             totalWorkTimeToday: 0,
+            coffeeCount: 0,
             lastResetDate: getToday(),
+          },
+        });
+      },
+
+      incrementCoffee: () => {
+        const state = get();
+        set({
+          stats: {
+            ...state.stats,
+            coffeeCount: state.stats.coffeeCount + 1,
+          },
+        });
+      },
+
+      decrementCoffee: () => {
+        const state = get();
+        set({
+          stats: {
+            ...state.stats,
+            coffeeCount: Math.max(0, state.stats.coffeeCount - 1),
           },
         });
       },
@@ -255,6 +281,7 @@ export const useTimerStore = create<TimerState>()(
           stats: {
             sessionsToday: 0,
             totalWorkTimeToday: 0,
+            coffeeCount: 0,
             lastResetDate: getToday(),
           },
         });
