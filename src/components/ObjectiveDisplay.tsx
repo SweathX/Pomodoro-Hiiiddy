@@ -6,7 +6,7 @@ import { useTimerStore } from '@/stores/timerStore';
 import { Pencil, RotateCcw } from 'lucide-react';
 
 export function ObjectiveDisplay() {
-  const totalWorkTimeToday = useTimerStore((state) => state.stats.totalWorkTimeToday);
+  const totalStreamTimeToday = useTimerStore((state) => state.stats.totalStreamTimeToday || 0);
   const objective = useTimerStore((state) => state.objective);
   const setObjective = useTimerStore((state) => state.setObjective);
   const resetObjective = useTimerStore((state) => state.resetObjective);
@@ -14,11 +14,9 @@ export function ObjectiveDisplay() {
   const [isEditing, setIsEditing] = useState(false);
   const [inputValue, setInputValue] = useState(objective.targetHours.toString());
 
-  // Convertir les secondes en heures décimales (ex: 1h30 = 1.5)
-  const hoursWorked = totalWorkTimeToday / 3600;
+  const hoursWorked = totalStreamTimeToday / 3600;
   const progressPercent = Math.min((hoursWorked / objective.targetHours) * 100, 100);
 
-  // Format d'affichage : "1.5" ou "0.25"
   const formatHours = (hours: number) => {
     if (hours < 0.01) return '0';
     return hours.toFixed(2).replace(/\.?0+$/, '');

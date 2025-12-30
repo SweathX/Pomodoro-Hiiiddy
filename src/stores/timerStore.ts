@@ -14,6 +14,7 @@ interface TimerConfig {
 interface Stats {
   sessionsToday: number;
   totalWorkTimeToday: number;
+  totalStreamTimeToday: number;
   coffeeCount: number;
   lastResetDate: string;
 }
@@ -63,6 +64,7 @@ const checkAndResetDailyStats = (stats: Stats): Stats => {
     return {
       sessionsToday: 0,
       totalWorkTimeToday: 0,
+      totalStreamTimeToday: 0,
       coffeeCount: 0,
       lastResetDate: today,
     };
@@ -81,6 +83,7 @@ export const useTimerStore = create<TimerState>()(
       stats: {
         sessionsToday: 0,
         totalWorkTimeToday: 0,
+        totalStreamTimeToday: 0,
         coffeeCount: 0,
         lastResetDate: getToday(),
       },
@@ -151,6 +154,11 @@ export const useTimerStore = create<TimerState>()(
         const { config, mode, currentSession, stats } = state;
         let updatedStats = checkAndResetDailyStats(stats);
         const newTime = state.timeRemaining - 1;
+
+        updatedStats = {
+          ...updatedStats,
+          totalStreamTimeToday: (updatedStats.totalStreamTimeToday || 0) + 1,
+        };
 
         if (mode === 'work') {
           updatedStats = {
@@ -227,6 +235,7 @@ export const useTimerStore = create<TimerState>()(
           stats: {
             sessionsToday: 0,
             totalWorkTimeToday: 0,
+            totalStreamTimeToday: 0,
             coffeeCount: 0,
             lastResetDate: getToday(),
           },
@@ -281,6 +290,7 @@ export const useTimerStore = create<TimerState>()(
           stats: {
             sessionsToday: 0,
             totalWorkTimeToday: 0,
+            totalStreamTimeToday: 0,
             coffeeCount: 0,
             lastResetDate: getToday(),
           },
