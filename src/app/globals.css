@@ -192,10 +192,15 @@ body {
 }
 
 /* Overlay mode - fond transparent */
-.overlay-mode {
+.overlay-transparent {
   background: transparent !important;
 }
 
-.overlay-mode body {
+.overlay-transparent main {
+  background: transparent !important;
+}
+
+html:has(.overlay-transparent),
+html:has(.overlay-transparent) body {
   background: transparent !important;
 }

@@ -60,20 +60,20 @@ export function Controls({ compact = false }: ControlsProps) {
         </span>
       </WoodButton>
 
-      {/* Skip Button */}
-      {mode !== 'idle' && (
-        <WoodButton
-          onClick={skip}
-          size={compact ? 'sm' : 'md'}
-          variant="secondary"
-          aria-label="Passer"
-        >
-          <span className="flex items-center gap-2">
-            <SkipForward size={18} />
-            {!compact && 'Skip'}
-          </span>
-        </WoodButton>
-      )}
+      {/* Skip Button - toujours présent pour garder la même taille */}
+      <WoodButton
+        onClick={skip}
+        size={compact ? 'sm' : 'md'}
+        variant="secondary"
+        aria-label="Passer"
+        disabled={mode === 'idle'}
+        className={mode === 'idle' ? 'invisible' : ''}
+      >
+        <span className="flex items-center gap-2">
+          <SkipForward size={18} />
+          {!compact && 'Skip'}
+        </span>
+      </WoodButton>
     </motion.div>
   );
 }

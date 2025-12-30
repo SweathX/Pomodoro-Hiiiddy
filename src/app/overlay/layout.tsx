@@ -10,5 +10,9 @@ export default function OverlayLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <div className="overlay-transparent">
+      {children}
+    </div>
+  );
 }
