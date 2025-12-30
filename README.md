@@ -1,38 +1,87 @@
+<div align="center">
+
 # Pomodoro Hiiiddy
 
-Un timer Pomodoro personnalisé avec un thème forêt/bambou cozy, conçu pour Hiiiddy qui fait des streams de révision sur Twitch.
+### Un timer Pomodoro personnalisé pour les streams de révision
+
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-12-ff69b4?style=for-the-badge&logo=framer)](https://www.framer.com/motion/)
+
+[Demo Live](https://pomodoro-hiiiddy.vercel.app) · [Signaler un Bug](https://github.com/SweathX/Pomodoro-Hiiiddy/issues)
+
+</div>
+
+---
 
 ## Aperçu
 
-Ce projet est un timer Pomodoro moderne et esthétique, créé spécialement pour accompagner les sessions de streaming. Il s'intègre parfaitement avec OBS grâce à une version overlay dédiée.
+Timer Pomodoro moderne avec un thème **forêt/bambou cozy**, conçu pour accompagner les sessions de streaming éducatives. S'intègre parfaitement avec **OBS/Streamlabs** grâce aux overlays dédiés avec fond transparent.
 
-### Fonctionnalités
+![Site Principal](public/screenshots/site.png)
 
-- **Timer Pomodoro classique** : Cycles de travail (25 min), pause (5 min) et pause longue (15 min après 4 sessions)
-- **Statistiques en temps réel** : Suivi des sessions complétées et du temps de travail
-- **Objectif de stream** : Définissez un objectif d'heures et suivez votre progression avec une barre visuelle
-- **Emotes animées** : Les emotes changent selon l'état du timer (travail, pause, repos...)
-- **Overlay OBS** : Version avec fond transparent pour intégration stream
-- **Persistance** : Les stats et objectifs sont sauvegardés dans le localStorage
+## Fonctionnalités
 
-## Stack technique
+| Fonctionnalité | Description |
+|----------------|-------------|
+| **Timer Pomodoro** | Cycles de travail (25 min), pause (5 min) et pause longue (15 min) |
+| **Statistiques** | Sessions complétées et temps de travail en temps réel |
+| **Objectif de stream** | Barre de progression vers un objectif d'heures personnalisable |
+| **Compteur de café** | Suivez votre consommation de café pendant le stream |
+| **Emotes animées** | Les emotes changent selon l'état du timer |
+| **Son de notification** | Alerte sonore à chaque transition |
+| **Overlays OBS** | 3 overlays avec fond transparent pour le stream |
+| **Persistance** | Stats sauvegardées automatiquement |
 
-- **Next.js 14** - Framework React avec App Router
-- **React 18** - Librairie UI
+## Overlays pour OBS/Streamlabs
+
+<div align="center">
+<table>
+<tr>
+<td align="center">
+<img src="public/screenshots/overlay_timer.png" width="300" alt="Overlay Timer"/>
+<br/>
+<strong>Timer</strong>
+<br/>
+<code>/overlay</code>
+</td>
+<td align="center">
+<img src="public/screenshots/overlay_objectif.png" width="300" alt="Overlay Objectif"/>
+<br/>
+<strong>Objectif</strong>
+<br/>
+<code>/overlay/objective</code>
+</td>
+<td align="center">
+<img src="public/screenshots/overlay_stats.png" width="300" alt="Overlay Stats"/>
+<br/>
+<strong>Stats</strong>
+<br/>
+<code>/overlay/stats</code>
+</td>
+</tr>
+</table>
+</div>
+
+## Stack Technique
+
+- **Next.js 15** - Framework React avec App Router
+- **React 19** - Librairie UI
 - **TypeScript** - Typage statique
-- **Tailwind CSS** - Styling utilitaire
+- **Tailwind CSS v4** - Styling utilitaire
 - **Framer Motion** - Animations fluides
-- **Zustand** - Gestion d'état globale
+- **Zustand** - Gestion d'état globale avec persistance
 - **Lucide React** - Icônes
 
 ## Installation
 
 ```bash
 # Cloner le repository
-git clone https://github.com/votre-username/pomodoro-hiiiddy.git
+git clone https://github.com/SweathX/Pomodoro-Hiiiddy.git
 
 # Aller dans le dossier
-cd pomodoro-hiiiddy
+cd Pomodoro-Hiiiddy
 
 # Installer les dépendances
 npm install
@@ -43,89 +92,81 @@ npm run dev
 
 Le projet sera accessible sur `http://localhost:3000`
 
-## Utilisation
+## Utilisation avec OBS/Streamlabs
 
-### Version complète
+### Ajouter un overlay
 
-Accédez à `http://localhost:3000` pour la version complète avec :
-- Timer avec contrôles (play/pause, reset, skip)
-- Panneau de statistiques
-- Objectif de stream éditable
-- Décorations animées (bambous, feuilles flottantes)
+1. Dans OBS/Streamlabs, ajoutez une source **Navigateur**
+2. Entrez l'URL de l'overlay souhaité :
 
-### Overlay OBS
+| Overlay | URL | Dimensions |
+|---------|-----|------------|
+| Timer | `https://pomodoro-hiiiddy.vercel.app/overlay` | 500 x 520 |
+| Objectif | `https://pomodoro-hiiiddy.vercel.app/overlay/objective` | 500 x 200 |
+| Stats | `https://pomodoro-hiiiddy.vercel.app/overlay/stats` | 550 x 80 |
 
-Pour intégrer le timer dans OBS :
+3. Le fond transparent fonctionne automatiquement
+4. Utilisez **clic droit → Interagir** pour contrôler le timer
 
-1. Lancez le projet (`npm run dev` ou servez le build statique)
-2. Dans OBS, ajoutez une source **Navigateur**
-3. URL : `http://localhost:3000/overlay`
-4. Dimensions recommandées : 400x300 px
-5. Cochez **"Actualiser le navigateur lorsque la scène devient active"**
+### Synchronisation
 
-L'overlay a un fond transparent et affiche uniquement le timer, l'emote et l'indicateur de session.
+Tous les overlays dans OBS/Streamlabs sont **automatiquement synchronisés** entre eux via le localStorage partagé.
 
-### Build statique
+## Personnalisation
 
-Pour générer une version statique (idéal pour hébergement) :
+### Emotes
 
-```bash
-npm run build
-```
+Remplacez les fichiers dans `/public/emotes/` :
 
-Les fichiers seront générés dans le dossier `out/`.
+| Fichier | État |
+|---------|------|
+| `wave.png` | Accueil (idle) |
+| `think.png` | Travail |
+| `happy.png` | Pause |
+| `sleep.png` | Pause longue |
+| `stars.png` | Milestone |
+| `heart.png` | Favicon |
 
-## Personnalisation des emotes
+### Son de notification
 
-Les emotes sont situées dans `/public/emotes/`. Pour les personnaliser :
-
-1. Remplacez les fichiers PNG par vos propres emotes
-2. Gardez les mêmes noms de fichiers :
-   - `wave.png` - État idle (accueil)
-   - `think.png` - Mode travail
-   - `happy.png` - Mode pause
-   - `sleep.png` - Mode pause longue
-   - `stars.png` - Milestone (nouveau record)
-   - `heart.png` - Favicon
-
-Les images doivent être détourées avec fond transparent pour un meilleur rendu.
+Remplacez `/public/sounds/notification.mp3` par votre propre son.
 
 ## Structure du projet
 
 ```
 src/
 ├── app/
-│   ├── layout.tsx          # Layout principal + fonts
-│   ├── page.tsx            # Page complète
+│   ├── layout.tsx              # Layout principal
+│   ├── page.tsx                # Page complète
 │   └── overlay/
-│       └── page.tsx        # Version overlay OBS
+│       ├── page.tsx            # Overlay Timer
+│       ├── objective/page.tsx  # Overlay Objectif
+│       └── stats/page.tsx      # Overlay Stats
 ├── components/
-│   ├── Timer.tsx           # Composant timer principal
-│   ├── TimerDisplay.tsx    # Affichage MM:SS animé
-│   ├── Controls.tsx        # Boutons de contrôle
-│   ├── Stats.tsx           # Panneau statistiques
-│   ├── Emote.tsx           # Emote animée
-│   ├── BambooFrame.tsx     # Cadre décoratif bambou
-│   ├── WoodButton.tsx      # Bouton style bois
-│   ├── ObjectiveDisplay.tsx # Objectif de stream
-│   └── BackgroundDecorations.tsx # Bambous et feuilles
+│   ├── Timer.tsx               # Timer principal
+│   ├── TimerDisplay.tsx        # Affichage MM:SS
+│   ├── Controls.tsx            # Boutons de contrôle
+│   ├── Stats.tsx               # Panneau statistiques
+│   ├── ObjectiveDisplay.tsx    # Objectif de stream
+│   ├── Emote.tsx               # Emotes animées
+│   ├── BambooFrame.tsx         # Cadre bambou
+│   └── WoodButton.tsx          # Boutons style bois
 ├── stores/
-│   └── timerStore.ts       # État global Zustand
-├── hooks/
-│   └── useTimer.ts         # Hook logique timer
-└── styles/
-    └── theme.css           # Variables CSS thème
+│   └── timerStore.ts           # État Zustand
+└── hooks/
+    └── useTimer.ts             # Logique timer
 ```
-
-## Thème visuel
-
-Le design s'inspire d'une ambiance forêt/bambou cozy :
-
-- **Couleurs principales** : Verts forêt, marrons bois, crème
-- **Éléments décoratifs** : Cadres bambou, feuilles animées
-- **Typographie** : Fredoka (Google Fonts)
-- **Animations** : Transitions fluides avec Framer Motion
 
 ## Licence
 
 MIT
+
+---
+
+<div align="center">
+
+Fait avec amour pour les streams de révision
+
+**[SweathX](https://github.com/SweathX)**
+
+</div>
