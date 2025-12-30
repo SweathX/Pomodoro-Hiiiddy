@@ -266,7 +266,32 @@ export const useTimerStore = create<TimerState>()(
         config: state.config,
         stats: state.stats,
         objective: state.objective,
+        mode: state.mode,
+        status: state.status,
+        timeRemaining: state.timeRemaining,
+        currentSession: state.currentSession,
       }),
     }
   )
 );
+
+// Synchronisation entre les fenêtres/overlays via localStorage
+if (typeof window !== 'undefined') {
+  window.addEventListener('storage', (event) => {
+    if (event.key === 'pomodoro-hiiiddy-storage' && event.newValue) {
+      try {
+        const newState = JSON.parse(event.newValue).state;
+        useTimerStore.setState({
+          stats: newState.stats,
+          objective: newState.objective,
+          mode: newState.mode,
+          status: newState.status,
+          timeRemaining: newState.timeRemaining,
+          currentSession: newState.currentSession,
+        });
+      } catch (e) {
+        // Ignore parsing errors
+      }
+    }
+  });
+}
