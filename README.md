@@ -1,10 +1,10 @@
 # Pomodoro Hiiiddy
 
-Un timer Pomodoro personnalisé avec un thème forêt/bambou cozy, conçu pour les streams de révision sur Twitch.
+Un timer Pomodoro personnalisé avec un thème forêt/bambou cozy, conçu pour Hiiiddy qui fait des streams de révision sur Twitch.
 
 ## Aperçu
 
-Ce projet est un timer Pomodoro moderne et esthétique, créé spécialement pour accompagner les sessions de streaming éducatives. Il s'intègre parfaitement avec OBS grâce à une version overlay dédiée.
+Ce projet est un timer Pomodoro moderne et esthétique, créé spécialement pour accompagner les sessions de streaming. Il s'intègre parfaitement avec OBS grâce à une version overlay dédiée.
 
 ### Fonctionnalités
 
