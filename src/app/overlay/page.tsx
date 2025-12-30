@@ -4,8 +4,10 @@ import { Timer } from '@/components';
 
 export default function OverlayPage() {
   return (
-    <main className="min-h-screen flex items-center justify-center p-4 bg-transparent">
-      <Timer showStats={false} />
+    <main className="flex items-center justify-center p-6 bg-transparent">
+      <div className="scale-90 origin-center">
+        <Timer showStats={false} />
+      </div>
     </main>
   );
 }
