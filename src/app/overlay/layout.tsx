@@ -1,9 +1,4 @@
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Pomodoro Overlay - Hiiiddy",
-  description: "Overlay Pomodoro pour OBS",
-};
+'use client';
 
 export default function OverlayLayout({
   children,
@@ -11,8 +6,14 @@ export default function OverlayLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="overlay-transparent">
+    <>
+      <style>{`
+        html, body {
+          background: transparent !important;
+          background-color: transparent !important;
+        }
+      `}</style>
       {children}
-    </div>
+    </>
   );
 }
