@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { useTimerStore } from '@/stores/timerStore';
-import { useTimer } from '@/hooks/useTimer';
 import { WoodButton } from './WoodButton';
 import { Play, Pause, RotateCcw, SkipForward } from 'lucide-react';
 
@@ -11,8 +10,8 @@ interface ControlsProps {
 }
 
 export function Controls({ compact = false }: ControlsProps) {
-  const { start, pause, reset, skip, mode } = useTimerStore();
-  const { isRunning } = useTimer();
+  const { start, pause, reset, skip, mode, status } = useTimerStore();
+  const isRunning = status === 'running';
 
   const handlePlayPause = () => {
     if (isRunning) {
@@ -24,7 +23,7 @@ export function Controls({ compact = false }: ControlsProps) {
 
   return (
     <motion.div
-      className={`flex ${compact ? 'gap-2' : 'gap-4'} justify-center flex-wrap`}
+      className={`flex ${compact ? 'gap-2' : 'gap-3'} justify-center`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}
@@ -32,7 +31,7 @@ export function Controls({ compact = false }: ControlsProps) {
       {/* Play/Pause Button */}
       <WoodButton
         onClick={handlePlayPause}
-        size={compact ? 'sm' : 'lg'}
+        size={compact ? 'sm' : 'md'}
         aria-label={isRunning ? 'Pause' : 'Démarrer'}
       >
         {isRunning ? (
@@ -43,7 +42,7 @@ export function Controls({ compact = false }: ControlsProps) {
         ) : (
           <span className="flex items-center gap-2">
             <Play size={20} />
-            {!compact && (mode === 'idle' ? 'Démarrer' : 'Reprendre')}
+            {!compact && 'Play'}
           </span>
         )}
       </WoodButton>
